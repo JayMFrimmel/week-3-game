@@ -1,0 +1,48 @@
+body {
+		font-family: "Brush Script MT", cursive;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	max-width: 960px;
+	margin: auto;
+
+}
+header {
+	font-size: 1.5em;
+	font-style: bold;
+	line-height: 1.8em;
+	margin: auto;
+	border: 3px solid purple;
+}
+#rules {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
+#guess {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
+#wins {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
+#losses {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
+#guesses-remaining {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
+#letters-guessed {
+	margin: 8px;
+	border: 1px solid black;
+	padding: 5px;
+}
