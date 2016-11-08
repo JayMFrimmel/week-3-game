@@ -9,36 +9,53 @@ var guessesTaken;
 var letterToGuess;
 
 //code to start the game 
+function initGame() {
 var letterIndex = Math.floor(Math.random() * alphabet.length);
-
-
+letterToGuess = alphabet[letterIndex];
+guessesTaken = 0;
+lettersGuessed = [];
+document.getElementById("player-guesses").innerHTML = "";
+document.getElementById("player-guesses-left").innerHTML = "9";
+}
 
 //capture key clicks
-document.onkeyup = function(event) {
-	//determine which key pressed and change it to lower case
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+function eventKeyPressed(e) {
+	var letterPressed = String.fromCharCode(e.keyCode);
+	letterPressed = letterPressed.toLowerCase();
 
-	// Create code to randomly choose one of the three options (Computer) 
-	var computerGuess = options[Math.floor(Math.random()*options.length)];
-
-	if ((userGuess == 'a') || (userGuess == 'b') || (userGuess == 'c')){
-
-		document.querySelector('#game').innerHTML = 'you chose: ' + userGuess + '. The computer chose: ' + computerGuess;
-
+	guessIndex = alphabet.indexOf(letterPressed);
+	if (guessIndex < 0) {
+		console.log("That is not a letter.");
+		return
 	}
+	handleGuessedLetter(letterPressed);
 }
 
-
-
-
-
-
-var userGuess = prompt("Choose a letter!");
-var userGuessLower = userGuess.toLowerCase();
-var letterCount = 3;
-if(letterGuess.indexOf(userGuessLower) == -1) {
-	else{
-
+//test for letters guessed
+function handleGuessedLetter(letter) {
+	if (letter === letterToGuess) {
+		handleWin();
+	} else {
+		handleMiss(letter);
 	}
 }
-var isLetter = true;
+function handleWin() {
+	numWins++;
+	document.getElementById("wins").innerHTML = numWins;
+	initGame();
+}
+function handleMiss(letter) {
+	guessesTaken++;
+	if (guessesTaken === numGuesses) {
+		numLosses++;
+		document.getElementById("losses").innerHTML = numLosses;
+		initGame();
+	} else {
+		lettersGuessed.push(letter);
+		document.getElementById("player-guesses").innerHTML = lettersGuessed.join(", ");
+		document.getElementById("player-guesses-left").innerHTML = numGuesses - guessesTaken;
+	}
+}
+window.addEventListener("keyup", eventKeyPressed, true);
+initGame();
+	
